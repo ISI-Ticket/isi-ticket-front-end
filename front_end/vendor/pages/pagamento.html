@@ -1,0 +1,146 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ISI TICKET</title>
+    <!-- materialize icons, css & js -->
+    <link rel="icon" type="image/png" sizes="32px32" href="../img/icons/icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="16px16" href="../img/icons/icon-72x72.png">
+    <link type="text/css" href="../css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" href="../css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="../img/icons/icon-96x96.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#e33742">
+    <meta name="theme-color" content="#e33742">
+    <link rel="stylesheet" href="../css/style2.css" />
+</head>
+
+<body class="grey lighten-4">
+
+    <!-- top nav -->
+    <nav class="z-depth-0">
+        <div class="nav-wrapper container">
+            <a href="../pages/pagamento.html" class="navbartexto" style="font-size: medium;">ISI TICKET</a>
+            <h5 class="titulo2">LOJA</h5>
+            <span class="right grey-text text-darken-1"></span>
+        </div>
+    </nav>
+
+    <!-- meio -->
+
+
+    <div class="recipes container grey-text text-darken-1" style="color:white; height: auto; width: auto;">
+        <div class="recipes container grey-text text-darken-1">
+            <br>
+            <!-- senha-->
+            <div class="card-panel recipe white row" style="height:120px;">
+                <img src="../img/yellowticket.png" alt="recipe thumb">
+                <div class="recipe-details">
+                    <div class="recipe-title" style="font-size:medium;">Senha Simples</div>
+                    <!-- <br> -->
+                    <div class="recipe-ingredients" style="font-size: medium;">2.05€</div>
+
+                    <button class="classbuttton2" type="button">Adicionar ao Carrinho</button>
+                </div>
+                <br>
+                <br>
+            </div>
+            <!-- senha-->
+            <div class="card-panel recipe white row" style="height:120px;">
+                <img src="../img/greenticket.png" alt="recipe thumb">
+                <div class="recipe-details">
+                    <div class="recipe-title" style="font-size:medium;">Senha Completa</div>
+
+                    <div class="recipe-ingredients" style="font-size: medium;">2.75€</div>
+
+                    <button class="classbuttton2" type="button">Adicionar ao Carrinho</button>
+                </div>
+                <br>
+                <br>
+            </div>
+
+            <div class="card-panel recipe white row" style="height:120px;">
+                <img src="../img/orangeticket.png" alt="recipe thumb">
+                <div class="recipe-details">
+                    <div class="recipe-title" style="font-size:medium;">Senha Rampa B</div>
+
+                    <div class="recipe-ingredients" style="font-size: medium;">4.05€</div>
+
+                    <button class="classbuttton2" type="button">Adicionar ao Carrinho</button>
+                </div>
+                <br>
+                <br>
+            </div>
+            <!-- senha-->
+            <div class="card-panel recipe white row" style="height:120px;">
+                <img src="../img/purpleticket.png" alt="recipe thumb">
+                <div class="recipe-details">
+                    <div class="recipe-title" style="font-size:medium;">Senha Grill</div>
+
+                    <div class="recipe-ingredients" style="font-size: medium;">5.50€</div>
+
+
+                    <button class="classbuttton2" type="button">Adicionar ao Carrinho</button>
+                </div>
+                <br>
+                <br>
+            </div>
+            <!-- Pack de Senhas-->
+            <div class="card-panel recipe white row" style="height:120px;">
+                <img src="../img/blueticket.png" alt="recipe thumb">
+                <div class="recipe-details">
+                    <div class="recipe-title" style="font-size:medium;">Pack de Senhas</div>
+
+                    <div class="recipe-ingredients" style="font-size: medium;">26.50€</div>
+
+                    <button class="classbuttton2" type="button">Adicionar ao Carrinho</button>
+                </div>
+                <br>
+                <br>
+            </div>
+            <!-- senha-->
+        </div>
+    </div>
+    <div class="recipes container grey-text text-darken-1">
+        <div class="recipes container grey-text text-darken-1">
+            <h5 class="titulo3">CARRINHO</h5>
+            <br>
+            <div class="cart-row">
+                <span class="cart-item cart-header cart-column">Item</span>
+                <span class="cart-price cart-header cart-column">Preço</span>
+                <span class="cart-quantity cart-header cart-column">Quantidade</span>
+            </div>
+            <div class="cart-items">
+            </div>
+            <div class="cart-total">
+                <strong class="cart-total-title">Total</strong>
+                <span class="cart-total-price">€0</span>
+            </div>
+            <button class="btn btn-primary btn-purchase" style="height:fit-content" type="button"
+                onclick="getItems()">Comprar</button>
+        </div>
+    </div>
+
+    <!-- bot nav-->
+    <div id="outer" class="navbarbot" style="height: 59px;">
+        <div id="inner">
+            <a href="../pages/perfil.html"><i class="material-icons">account_box</i></a>
+            <a href="../pages/sobre.html"><i class="material-icons">contact_support</i></a>
+            <a style="height: 59px;" href="../pages/pagamento.html" class="active"><i
+                    class="material-icons">playlist_add</i></a>
+            <a href="../pages/carteira.html"><i class="material-icons">playlist_add_check</i></a>
+            <a href="../pages/historico.html"><i class="material-icons">format_list_bulleted</i></a>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/store.js" async></script>
+</body>
+
+</html>
