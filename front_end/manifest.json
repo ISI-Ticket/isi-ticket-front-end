@@ -1,7 +1,7 @@
 {
     "name": "ISI TICKET",
     "short_name": "ISITICKET",
-    "start_url": "http://localhost:5500/",
+    "start_url": "https://isi-ticket.herokuapp.com/",
     "display": "standalone",
     "background_color": "#e33742",
     "theme_color": "#e33742",
