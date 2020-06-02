@@ -1,8 +1,8 @@
 
-window.onload = function(){
+window.onload = function () {
     this.getHistory().then(tickets => populate(tickets))
 }
-async function getHistory(){
+async function getHistory() {
     let profile = JSON.parse(localStorage.getItem('profile'));
     let email = profile.email;
     let response = await fetch(`https://isi-ticket-api.herokuapp.com/test/history/${email}`);
@@ -10,16 +10,16 @@ async function getHistory(){
     return data;
 }
 
-function populate(tickets){
-    let render  = document.getElementById('render');
+function populate(tickets) {
+    let render = document.getElementById('render');
     let page;
     let index = 0;
     console.log(tickets);
-    for(ticket of tickets){
+    for (ticket of tickets) {
         let image = setImage(ticket.ticketID)
-            index += 1;
-            let date = ticket.date.substring(0,10);
-            page = 
+        index += 1;
+        let date = ticket.date.substring(0, 10);
+        page =
             `<div class="card-panel recipe white row">
             <img src= ${image} alt="recipe thumb">
             <div class="recipe-details">
@@ -28,31 +28,31 @@ function populate(tickets){
                 <br>
                 <div class="recipe-ingredients" style="font-size: medium;">${validationDate(ticket.validated)}</div>
             </div>
-        </div>`
-            render.innerHTML += page;
-        
+        </div>`;
+        render.innerHTML += page;
+
     }
-   
+
 }
 
-function validationDate(date){
-    if(date == null){
+function validationDate(date) {
+    if (date == null) {
         return "Ainda por usar."
-    }else{
-        date = ticket.date.substring(0,10);
+    } else {
+        date = ticket.date.substring(0, 10);
         return `Usado em: ${date}`
     }
 }
 
-function setImage(ticketID){
-    switch (ticketID){
+function setImage(ticketID) {
+    switch (ticketID) {
         case 1:
             return "../img/yellowticket.png"
-        case 2: 
+        case 2:
             return "../img/greenticket.png"
         case 3:
             return "../img/purpleticket.png"
-        case 4: 
+        case 4:
             return "../img/orangeticket.png"
     }
 }

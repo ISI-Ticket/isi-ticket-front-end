@@ -29,8 +29,6 @@ const assets = [
     '/vendor/js/ui.js',
     '/vendor/js/app.js',
     '/vendor/pages/fallback.html',
-    '/',
-    '/index.html',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     'https://code.iconify.design/1/1.0.4/iconify.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',    
@@ -65,7 +63,7 @@ self.addEventListener('activate', evt => {
         caches.keys().then(keys => {
             //console.log(keys);
             return Promise.all(keys
-                .filter(key => key !== staticCacheName && key !== dynamicCacheName)
+                .filter(key => key !== staticCacheName)
                 .map(key => caches.delete(key))
             );
         })
@@ -77,14 +75,15 @@ self.addEventListener('fetch', evt => {
     //console.log('fetch event', evt);
     evt.respondWith(
         caches.match(evt.request).then(cacheRes => {
-            return cacheRes || fetch(evt.request).then(fetchRes => {
+            return cacheRes || fetch(evt.request)
+            /*.then(fetchRes => {
                 return caches.open(dynamicCacheName).then(cache => {
                     cache.put(evt.request.url, fetchRes.clone());
                     // check cached items size
                     limitCacheSize(dynamicCacheName, 15);
                     return fetchRes;
                 })
-            });
+            });*/
         }).catch(() => {
             if (evt.request.url.indexOf('.html') > -1) {
                 return caches.match('/vendor/pages/fallback.html');
