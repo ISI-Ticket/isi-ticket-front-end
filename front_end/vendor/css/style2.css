@@ -371,7 +371,7 @@ body {
 .btn-purchase:hover {
     display: block;
     margin: 40px auto 80px auto;
-    font-size: 1.75em;
+    font-size: 1.15em;
     color: #bd1e21;
     background-color: #ffffff;
 }

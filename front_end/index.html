@@ -1,32 +1,37 @@
+<!DOCTYPE html5>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ISI Ticket</title>
-    <link rel="stylesheet" href="./vendor/css/login.css">
-
+    <link rel="stylesheet" href="vendor/css/login.css">
+    <link rel="icon" type="image/png" sizes="32px32" href="vendor/img/icons/icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16px16" href="vendor/img/icons/icon-96x96.png">
+    <link rel="manifest" href="manifest.json">
+    
     <!-- ios support -->
-    <link rel="apple-touch-icon" href="../img/icons/icon-96x96.png">
+    <link rel="apple-touch-icon" href="vendor/img/icons/icon-96x96.png">
     <meta name="apple-mobile-web-app-status-bar" content="#e33742">
     <meta name="theme-color" content="#e33742">
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
     <div class="container">
         <div class="logo-container">
-            <picture alt="isi-ticket logo">
-                <source srcset="./vendor/img/isi-ticket-logo.svg">
-                <img src="./vendor/img/isi-ticket-logo.svg" alt="isi-ticket logo">
-                <!--<img src="./vendor/img/logo.png" alt="isi-ticket logo">-->
-            </picture>
-        </div>
-        <div class="btn-container">
-            <button class="btn btn-primary btn-google" type="button">Iniciar sessão</button>
-            <button class="btn btn-primary btn-facebook" type="button">Iniciar sessão</button>
-        </div>
+        </div>    
     </div>
+    <div class="btn-container-google">
+        <button class="btn btn-primary btn-after btn-google" type="button" id="googleBtn">Iniciar sessão</button>
+    </div>
+    <div class="btn-container-facebook">
+        <button class="btn btn-primary btn-after btn-facebook" type="button" id="facebookBtn">Iniciar sessão</button>
+    </div>
+    
+    <script src="vendor/js/signin.js"></script>
 </body>
 
 </html>

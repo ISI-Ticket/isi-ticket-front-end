@@ -1,58 +1,50 @@
-var profileTest;
+window.onload = () => {
 
-function renderButton() {
+    startApp();
 
-    gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        //'width': 240,
-        //'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSignIn,
-        'onfailure': onFailure
+    let facebookBtn = document.getElementById('facebookBtn');
+
+    facebookBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        facebookLogin();
     });
-}
+} 
 
-function onFailure(error) {
-    console.log(error);
-}
-
-function signOut() {
-    let auth2 = gapi.auth2.getAuthInstance();
-    
-    auth2.signOut().then(function () {
-        console.log('User signed out.');
+const startApp = () => {
+    gapi.load('auth2', function () {
+        auth2 = gapi.auth2.init({
+            client_id: '743510812799-olf9sq5n33lqvp9reigo9tb11itfucmo.apps.googleusercontent.com',
+            cookiepolicy: 'single_host_origin',
+            scope: 'profile'
+        });
+        attachSignin(document.getElementById('googleBtn'));
     });
+};
+
+const attachSignin = (element) => {
+    auth2.attachClickHandler(element, {},
+        function (googleUser) {
+            googleUser = googleUser.getBasicProfile();
+
+            let profile = {
+                'email': googleUser.Eu,
+                'firstName': googleUser.GW,
+                'lastName': googleUser.GU,
+                'api': 'google'
+            }
+
+            signInApi(profile);
+
+        }, function (error) {
+            if(error.error === 'popup_closed_by_user') {
+                console.log('fechei popup')
+            } else {
+                console.log(error);
+            }
+        })
 }
 
-function onSignIn(googleUser) {
-    profile = googleUser.getBasicProfile();
-    var data = {
-        "email": profile.getEmail()
-    }
-    console.log(data);
-    fetch('https://isi-ticket-api.herokuapp.com/user/signin', {
-        headers: { 'Content-Type': 'application/json'},
-        method: 'POST',
-        body: JSON.stringify(data)
-    }).then(function (res) {
-        return res.json();
-    }).then(function (data) {
-        console.log(JSON.stringify(data));
-        let response = JSON.stringify(data);
-        if (data.exists == true) {
-            localStorage.setItem('profile', response);
-            window.location.href = './vendor/pages/perfil.html'
-        } else {
-            window.location.href = './vendor/pages/registar.html'
-            localStorage.setItem("email", profile.getEmail());
-            localStorage.setItem("firstname", profile.getGivenName());
-            localStorage.setItem("lastname", profile.getFamilyName());
-        };
-    });
-}
-
-//Facebook login - ver melhor o logout...
 window.fbAsyncInit = function () {
     FB.init({
         appId: '253404675657890',
@@ -71,14 +63,16 @@ window.fbAsyncInit = function () {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-function facebookLogin() {
+const facebookLogin = () => {
     FB.getLoginStatus((response) => {
         if (response.status === 'connected') {
             FB.api('/me?fields=first_name, last_name, email, picture.type(large)', function (userData) {
                 let data = {
-                    "email": userData.email
+                    "email": userData.email,
+                    "firstName": userData.first_name,
+                    "lastName": userData.last_name
                 }
-                
+
                 signInApi(data);
             });
         }
@@ -92,19 +86,29 @@ function facebookLogout() {
     });
 }
 
-async function signInApi(data) {
-    try {
-        let response = await fetch("https://isi-ticket-api.herokuapp.com/user/signin", {
-            headers: { 'Content-Type': 'application/json' },
-            method: 'POST',
-            body: JSON.stringify(data)
-        });
+function signInApi(profile) {
 
-        if(response.status == 200) {
-            
-        }
-
-    } catch (error) {
-        console.log(error);
+    let data = {
+        email: profile.email
     }
+
+   fetch('https://isi-ticket-api.herokuapp.com/user/signin', {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+        body: JSON.stringify(data)
+    }).then((res) => {
+        return res.json();
+    }).then((data) => {
+        let response = JSON.stringify(data);
+
+        if (data.exists == true) {
+            localStorage.setItem('profile', response);
+            window.location.href = './vendor/pages/perfil.html'
+        } else {
+            window.location.href = './vendor/pages/registar.html'
+            localStorage.setItem('email', profile.email);
+            localStorage.setItem('firstname', profile.firstName);
+            localStorage.setItem('lastname', profile.lastName);
+        };
+    });
 }
