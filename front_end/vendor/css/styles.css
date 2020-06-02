@@ -70,6 +70,17 @@ nav .sidenav-trigger {
     margin: 0;
 }
 
+label {
+    font-size: 1.2rem;
+    color: #7e7e7e;
+    font-weight: bold;
+}
+
+.error {
+    color: #e33742;
+    font-weight: bold;
+
+}
 
 /* recipe styles */
 

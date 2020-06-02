@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ISI Ticket</title>
+    <title>ISI TICKET</title>
     <!-- materialize icons, css & js -->
     <link rel="icon" type="image/png" sizes="32px32" href="../img/icons/icon-72x72.png">
     <link rel="icon" type="image/png" sizes="16px16" href="../img/icons/icon-72x72.png">
@@ -23,9 +23,13 @@
 
     <!-- Google shit-->
     <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id"
-        content="680946609407-a812c4bn4704j8u2n15lsud3hq19c3a5.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="680946609407-a812c4bn4704j8u2n15lsud3hq19c3a5.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!--VALIDAR-->
+    
+
+   
+
 </head>
 
 <body class="grey lighten-4">
@@ -42,42 +46,46 @@
     </nav>
 
     <!-- content -->
-    <div class="recipes container grey-text text-darken-1" style="height: auto; width: auto;">
-        <div class="recipes container grey-text text-darken-1" style="height: auto; width: auto;">
-            <br>
-            <h6 class="placeholder1">E-mail:</h6>
-            <input id="email" type="text" value="" name="uname" readonly>
-            <br>
-            <h6 class="placeholder1">Nome:</h6>
-            <input id="firstname" type="text" value="" name="uname" readonly>
-            <br>
-            <h6 class="placeholder1">Apelido:</h6>
-            <input id="lastname" type="text" value="" name="uname" readonly>
-            <br>
-            <h6 class="placeholder1">NIF:</h6>
-            <input id="nif" type="text" value="" name="uname">
-            <br>
-            <h6 class="placeholder1">Telemóvel:</h6>
-            <input id="phone" type="text" value="" name="uname">
-            <br>
-            <h6 class="placeholder1">Endereço:</h6>
-            <input id="address" type="text" value="" name="uname">
-            <br>
-            <h6 class="placeholder1">Cidade:</h6>
-            <input id="city" type="text" value="" name="uname">
-            <br>
-            <h6 class="placeholder1">Código Postal:</h6>
-            <input id="zip" type="text" value="" name="uname">
-            <br>
-            <br>
-            <button class="btn btn-primary btn-purchase" style="height:fit-content" type="button"
-                onclick="register()">Registar</button>
+    <div class="recipes container grey-text text-darken-1" style="height: 100%; width: 100%;">
+        <div class="recipes container grey-text text-darken-1" style="height: 100; width: 100;">
+
+            <form id="signUpForm" name="signUpForm">
+                <br>
+                <label for="username">E-mail:</label>
+                <input type="email" id="email" data-rule="required|email">
+                <br>
+                <label for="username">Nome:</label>
+                <input type="text" id="firstname" name="" data-rule="required|name">
+                <br>
+                <label for="username">Apelido:</label>
+                <input type="text" id="lastname" name="lastname" >
+                <br>
+                <label for="username">NIF:</label>
+                <input type="text" id="nif" name="nif" data-rule="required">
+                <br>
+                <label for="username">Telemóvel:</label>
+                <input type="text" id="phone" name="phone"data-rule="required|phone">
+                <br>
+                <label for="username">Endereço:</label>
+                <input type="text" id="address" name="address" data-rule="required|address">
+                <br>
+                <label for="username">Cidade:</label>
+                <input type="text" id="city" name="city" data-rule="required|city">
+                <br>
+                <label for="username">Código Postal:</label>
+                <input type="text" id="zip" name="zip" data-rule="required|zip">
+                <br>
+
+                <button class="btn btn-primary btn-purchase" style="height:fit-content" type="submit">Registar</button>
+            </form>
             <p style="color: white;">p</p>
         </div>
     </div>
 
     <script src="../js/signup.js"></script>
+    <script src="../js/form-validator.js"></script>
     <script src="../js/app.js"></script>
+
 
 </body>
 
