@@ -32,7 +32,8 @@ window.onload = () => {
                 facebookLogin();
             });
         })
-        .catch(function () {
+        .catch((err) => {
+            console.log(err)
             console.log('Facebook sdk is NOT allowed:');
         });
 
