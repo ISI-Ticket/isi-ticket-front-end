@@ -13,9 +13,11 @@ window.onload = () => {
                 });
             };
 
+            FB.AppEvents.logPageView();
+
             (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
+                if (d.getElementById(id)) { return; }
                 js = d.createElement(s); js.id = id;
                 js.src = "https://connect.facebook.net/pt_PT/sdk.js";
                 fjs.parentNode.insertBefore(js, fjs);
@@ -63,7 +65,6 @@ const attachSignin = (element) => {
 
         }, function (error) {
             if (error.error === 'popup_closed_by_user') {
-                console.log('fechei popup')
             } else {
                 console.log(error);
             }
@@ -83,6 +84,21 @@ const facebookLogin = () => {
 
                 signInApi(profile);
             });
+        } else {
+            FB.login((response) => {
+                if (response.status === 'connected') {
+                    FB.api('/me?fields=first_name, last_name, email, picture.type(large)', function (userData) {
+                        let profile = {
+                            'email': userData.email,
+                            'firstName': userData.first_name,
+                            'lastName': userData.last_name,
+                            'api': 'facebook'
+                        }
+        
+                        signInApi(profile);
+                    });
+                }
+            }, { scope: 'public_profile,email' });
         }
 
     }, { scope: 'public_profile, email' })
