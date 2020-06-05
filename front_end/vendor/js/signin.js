@@ -50,16 +50,15 @@ window.fbAsyncInit = function () {
         appId: '253404675657890',
         autoLogAppEvents: true,
         xfbml: true,
-        version: 'v6.0'
+        version: 'v7.0'
     });
 };
 
-// Load the SDK asynchronously
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    js.src = "https://connect.facebook.net/pt_PT/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
@@ -67,23 +66,18 @@ const facebookLogin = () => {
     FB.getLoginStatus((response) => {
         if (response.status === 'connected') {
             FB.api('/me?fields=first_name, last_name, email, picture.type(large)', function (userData) {
-                let data = {
-                    "email": userData.email,
-                    "firstName": userData.first_name,
-                    "lastName": userData.last_name
+                let profile = {
+                    'email': userData.email,
+                    'firstName': userData.first_name,
+                    'lastName': userData.last_name,
+                    'api': 'facebook' 
                 }
 
-                signInApi(data);
+                signInApi(profile);
             });
         }
 
     }, { scope: 'public_profile, email' })
-}
-
-function facebookLogout() {
-    FB.logout((response) => {
-        console.log(response);
-    });
 }
 
 function signInApi(profile) {
@@ -109,6 +103,7 @@ function signInApi(profile) {
             localStorage.setItem('email', profile.email);
             localStorage.setItem('firstname', profile.firstName);
             localStorage.setItem('lastname', profile.lastName);
+            localStorage.setItem('api', profile.api);
         };
     });
 }
