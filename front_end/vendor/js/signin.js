@@ -2,10 +2,8 @@ window.onload = () => {
 
     startApp();
 
-    checkIfFacebookIsBlocked() {
-        const _this = this;
-        fetch('https://connect.facebook.net/en_US/sdk.js')
-          .then(function() {
+    fetch('https://connect.facebook.net/en_US/sdk.js')
+        .then(function () {
             window.fbAsyncInit = () => {
                 FB.init({
                     appId: '253404675657890',
@@ -14,7 +12,7 @@ window.onload = () => {
                     version: 'v7.0'
                 });
             };
-            
+
             (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) return;
@@ -22,20 +20,21 @@ window.onload = () => {
                 js.src = "https://connect.facebook.net/pt_PT/sdk.js";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
-          })
-          .catch(function() {
+
+
+            let facebookBtn = document.getElementById('facebookBtn');
+
+            facebookBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                facebookLogin();
+            });
+        })
+        .catch(function () {
             console.log('Facebook sdk is NOT allowed:');
-          });
-      }
+        });
 
-    let facebookBtn = document.getElementById('facebookBtn');
-
-    facebookBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        facebookLogin();
-    });
-} 
+}
 
 const startApp = () => {
     gapi.load('auth2', function () {
@@ -63,7 +62,7 @@ const attachSignin = (element) => {
             signInApi(profile);
 
         }, function (error) {
-            if(error.error === 'popup_closed_by_user') {
+            if (error.error === 'popup_closed_by_user') {
                 console.log('fechei popup')
             } else {
                 console.log(error);
@@ -79,7 +78,7 @@ const facebookLogin = () => {
                     'email': userData.email,
                     'firstName': userData.first_name,
                     'lastName': userData.last_name,
-                    'api': 'facebook' 
+                    'api': 'facebook'
                 }
 
                 signInApi(profile);
@@ -95,7 +94,7 @@ function signInApi(profile) {
         email: profile.email
     }
 
-   fetch('https://isi-ticket-api.herokuapp.com/user/signin', {
+    fetch('https://isi-ticket-api.herokuapp.com/user/signin', {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
         body: JSON.stringify(data)
