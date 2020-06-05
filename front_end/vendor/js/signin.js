@@ -2,6 +2,32 @@ window.onload = () => {
 
     startApp();
 
+    checkIfFacebookIsBlocked() {
+        const _this = this;
+        fetch('https://connect.facebook.net/en_US/sdk.js')
+          .then(function() {
+            window.fbAsyncInit = () => {
+                FB.init({
+                    appId: '253404675657890',
+                    autoLogAppEvents: true,
+                    xfbml: true,
+                    version: 'v7.0'
+                });
+            };
+            
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/pt_PT/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+          })
+          .catch(function() {
+            console.log('Facebook sdk is NOT allowed:');
+          });
+      }
+
     let facebookBtn = document.getElementById('facebookBtn');
 
     facebookBtn.addEventListener('click', (e) => {
@@ -44,23 +70,6 @@ const attachSignin = (element) => {
             }
         })
 }
-
-window.fbAsyncInit = function () {
-    FB.init({
-        appId: '253404675657890',
-        autoLogAppEvents: true,
-        xfbml: true,
-        version: 'v7.0'
-    });
-};
-
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/pt_PT/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
 
 const facebookLogin = () => {
     FB.getLoginStatus((response) => {
