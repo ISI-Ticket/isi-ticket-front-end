@@ -15,6 +15,15 @@ app.use(express.static(path.join(__dirname)));
 app.use("/vendor/css", express.static(__dirname + '/vendor/css'));
 app.use("/vendor/img", express.static(__dirname + '/vendor/img'));
 app.use("/vendor/js", express.static(__dirname + '/vendor/js'));
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production') {
+      if (req.headers['x-forwarded-proto'] !== 'https')
+          return res.redirect('https://' + req.headers.host + req.url);
+      else
+          return next();
+  } else
+      return next();
+});
 
 app.get('/test', (req, res) => {
   res.send('Hello World!');
