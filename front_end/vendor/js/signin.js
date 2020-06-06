@@ -120,6 +120,7 @@ function signInApi(profile) {
 
         if (data.exists == true) {
             localStorage.setItem('profile', response);
+            localStorage.setItem('api', profile.api);
             window.location.href = './vendor/pages/perfil.html'
         } else {
             window.location.href = './vendor/pages/registar.html'

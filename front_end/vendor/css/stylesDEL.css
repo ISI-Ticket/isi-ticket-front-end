@@ -1,0 +1,320 @@
+
+
+
+
+
+/* Placeholder Perfil*/
+
+.placeholder1 {
+    color: black;
+    font-size: medium;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* recipe styles */
+
+.recipes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 2vh;
+    color: #FFFFFF;
+}
+
+.card-panel.recipe {
+    position: relative;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0px 1px 3px rgba(90, 90, 90, 1);
+    display: grid;
+    grid-template-columns: 2fr 6fr 1fr;
+    grid-template-areas: "image details delete";
+    position: center;
+    width: 120%;
+}
+
+.recipe img {
+    grid-area: image;
+    max-width: 80px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.recipe-details {
+    grid-area: details;
+    margin-top: 6px;
+    padding-right: 5%;
+    padding-left: 5%;
+    color: black;
+}
+
+.recipe-delete {
+    grid-area: delete;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.recipe-delete2 {
+    grid-area: delete;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.recipe-delete i {
+    font-size: 18px;
+}
+
+.recipe-delete2 i {
+    font-size: 40px;
+}
+
+.recipe-title {
+    position: relative;
+    font-weight: bold;
+    font-size: medium;
+    left: 10%;
+    right: 10%;
+}
+
+.recipe-ingredients {
+    font-size: small;
+    margin-left: 20px;
+}
+
+
+/* form-styles */
+
+.add-btn {
+    background: var(--title) !important;
+}
+
+input {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+.side-form button {
+    background: var(--title);
+    box-shadow: 1px 1px 3px rgba(90, 90, 90, 0.2);
+}
+
+form .input-field {
+    margin-top: 30px;
+}
+
+/*LOGIN*/
+
+.centerDiv {
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 80%;
+    height: 70%;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0px 1px 3px rgba(90, 90, 90, 1);
+    /* LOGIN QUADRADO */
+}
+
+.fundo {
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    background-color: #f7f5f5;
+    /* LOGIN FUNDO */
+}
+
+
+/*Login Extra*/
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Full-width input fields */
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+/* Set a style for all buttons */
+
+button {
+    background-color: rgb(205, 179, 128);
+    /*MUDAR COR DO BOTAO*/
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+
+/* Change styles for span and cancel button on extra small screens */
+
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+
+/* Pagamento*/
+
+.centerDivPag {
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 10px;
+    background-color: white;
+}
+
+.classbuttton {
+    background-color: #FFFFFF;
+    border: 2px solid;
+    border-color: #757575;
+    color: #757575;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: auto;
+    cursor: pointer;
+    width: 40%;
+    left: 0;
+    right: 0;
+    position: fixed;
+}
+
+.classbuttton2 {
+    background: transparent;
+    color: #64ade6;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: auto;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+}
+
+.classbuttton2:hover {
+    background: transparent;
+    color: #e33742;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: auto;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+}
+
+.classbuttton3 {
+    background: transparent;
+    color: #64ade6;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: auto;
+    cursor: pointer;
+    width: 130px;
+    height: 50px;
+}
+
+.classbuttton3:hover {
+    background: transparent;
+    color: #e33742;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: auto;
+    cursor: pointer;
+    width: 130px;
+    height: 50px;
+}
+
+.iconify {
+    width: 50px;
+    height: 50px;
+}
+
+.placeholder {
+    border: 2px solid;
+    border-color: #757575;
+    opacity: 0.5;
+}

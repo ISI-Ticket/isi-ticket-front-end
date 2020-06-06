@@ -1,6 +1,8 @@
 window.onloadstart = () => {
   let profile = JSON.parse(localStorage.setItem('profile'));
 
+  const signOutBtn = document.getElementById('signOutBtn');
+
   if (profile.api === 'google') {
     let script = document.createElement('script');
 
@@ -9,6 +11,11 @@ window.onloadstart = () => {
     script.defer = 'defer';
 
     document.head.appendChild(script);
+
+    signOutBtn.addEventListener('click', () => {
+      signOutGoogle();
+    });
+
   } else {
 
     window.fbAsyncInit = function () {
@@ -29,6 +36,10 @@ window.onloadstart = () => {
     }(document, 'script', 'facebook-jssdk'));
 
   }
+
+  signOutBtn.addEventListener('click', () => {
+    signOutFacebook();
+  });
 
 }
 
@@ -53,18 +64,16 @@ function onLoad() {
   });
 }
 
-const signOut = () => {
-
+const signOutGoogle = () => {
   let auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(() => {
     localStorage.clear();
-    console.log('User signed out.');
     window.location.href = '../../index.html';
   });
 
 }
 
-function facebookLogout() {
+const signOutFacebook = () => {
   FB.logout((response) => {
       localStorage.clear();
       console.log(response);

@@ -72,7 +72,8 @@ source {
 }
 
 .btn-google:hover {
-    color: #bd1e21;
+    color: #e33742;
+    font-weight: bold;
     background-color: #ffffff;
 }
 
@@ -107,7 +108,8 @@ source {
 }
 
 .btn-facebook:hover {
-    color: #bd1e21;
+    color: #e33742;
+    font-weight: bold;
     background-color: #ffffff;
 }
 
