@@ -97,12 +97,12 @@ input:focus {
     font-weight: bold;
 }
 
-.btn {
+/*.btn {
     text-align: center;
     vertical-align: middle;
     padding: .67em .67em;
     cursor: pointer;
-}
+}*/
 
 .content-container {
     display: absolute;
@@ -164,11 +164,19 @@ form {
 
 .btn:hover {
     display: block;
+    margin: 40px auto 80px auto;
     font-size: 1.3em;
     font-weight: bold;
     color: #e33742;
     background-color: #ffffff;
 }
+
+
+.btn:focus {
+    color: #e33742;
+    background-color: #ffffff;;
+}
+
 
 /* ###### */
 
@@ -246,9 +254,14 @@ main {
 
 .btn-card:hover {
     color: var(--primary);
-    font-weight: bold;
     background-color: white;
 }
+
+.btn-card:focus {
+    color: var(--primary);
+    background-color: white;
+}
+
 
 .btn-card:before {
     content: "";
@@ -263,6 +276,11 @@ main {
 }
 
 .btn-card:hover::before {
+    background: url('../img/add_shopping_cart-red.svg') no-repeat center;
+    background-size: contain;
+}
+
+.btn-card:focus::before {
     background: url('../img/add_shopping_cart-red.svg') no-repeat center;
     background-size: contain;
 }
@@ -413,7 +431,7 @@ main {
 .cart-item-title {
     color: #333;
     margin-left: .5em;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .cart-item-image {
@@ -433,6 +451,12 @@ main {
 
 .btn-danger:hover {
     background-color: #CC4C4C;
+    margin-left: 30px;
+    background: #e33742;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    width: 50px;
 }
 
 .cart-quantity-input {

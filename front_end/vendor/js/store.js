@@ -100,7 +100,7 @@ function addItemToCart(title, price) {
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1">
             <input class="cart-quantity-input" type="hidden" value=${ticketID}>
-            <button class="btn btn-danger" type="button">X</button>
+            <button class="btn btn-primary btn-danger" type="button">X</button>
             
 
            
