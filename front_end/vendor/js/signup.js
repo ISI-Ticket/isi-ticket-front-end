@@ -1,6 +1,6 @@
 window.onload = () => {
     setData();
-
+    
     validatorSignUp();
 
     const registerForm = document.getElementById('signUpForm');
@@ -66,7 +66,6 @@ function register() {
     }).then(function (res) {
         return res.json();
     }).then(function (data) {
-        console.log(JSON.stringify(data));
         let response = JSON.stringify(data);
         localStorage.setItem('profile', response);
         window.location.href = './perfil.html';

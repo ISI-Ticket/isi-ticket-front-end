@@ -29,6 +29,24 @@ body {
     width: 100%;
 }
 
+/* Remove input type number arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:focus {
+    border-bottom: 1px solid #9e9e9e!important;
+    box-shadow: none!important;
+} 
+
 .header-container {
     width: 100%;
     height: var(--header-height);
@@ -89,7 +107,7 @@ body {
 .content-container {
     display: absolute;
     width: 100%;
-    height: calc(100% - var(--header-height) - var(--navbar-bot-height));
+    height: calc(100vh - var(--header-height) - var(--navbar-bot-height));
 }
 
 p {
@@ -112,7 +130,7 @@ p {
 
 /* ###### */
 
-/* Perfil */
+/* Perfil & Registar */
 form {
     display: flex;
     flex-direction: column;
@@ -146,7 +164,6 @@ form {
 
 .btn:hover {
     display: block;
-    margin: 40px auto 80px auto;
     font-size: 1.3em;
     font-weight: bold;
     color: #e33742;
@@ -154,6 +171,137 @@ form {
 }
 
 /* ###### */
+
+/* Pagamento */
+
+/* recipe styles */
+main {
+    height: calc(100vh - var(--header-height) - var(--navbar-bot-height));
+} 
+
+.cards-header {
+    display: absolute;
+    height: 40px;
+}
+
+.cards-footer {
+    display: absolute;
+    height: 40px;
+}
+
+.card-panel.ticket.row {
+    position: relative;
+    border-radius: 8px;
+    margin: 0px;
+    padding: 0px;
+    box-shadow: 0px 1px 3px rgba(90, 90, 90, 1);
+    display: grid;
+    grid-template-columns: 2fr 6fr;
+    grid-template-areas: "image details delete";
+    background-color: #f8f8f8;
+    margin: 0 10%;
+}
+
+.card-img {
+    grid-area: image;
+    display: block;
+    background: url("../img/yellowticket.png") no-repeat center;
+    background-size: contain;
+}
+
+.ticket-title {
+    position: relative;
+    font-weight: bold;
+    font-size: medium;
+}
+
+
+.ticket-price {
+    font-size: small;
+}
+
+
+.btn-card-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 3% 10%;
+}
+
+.btn-card {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 2.5em;
+    text-decoration: none;
+    outline: none;
+    padding-left: 15%;
+    font-size: 1rem;
+    border-radius: 5px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    background-color: var(--primary);
+    color: white;
+    font-weight: bold;
+}
+
+.btn-card:hover {
+    color: var(--primary);
+    font-weight: bold;
+    background-color: white;
+}
+
+.btn-card:before {
+    content: "";
+    position: absolute;
+    border-right: #bd1e21 0.01em solid;
+    top: 0;
+    left: 0;
+    width: 15%;
+    height: 100%;
+    background: url('../img/add_shopping_cart-white.svg') no-repeat center;
+    background-size: contain;
+}
+
+.btn-card:hover::before {
+    background: url('../img/add_shopping_cart-red.svg') no-repeat center;
+    background-size: contain;
+}
+
+.material-icons.shop-cart {
+    color: white;
+}
+
+.recipe-details {
+    grid-area: details;
+    margin-top: 6px;
+    padding-right: 5%;
+    padding-left: 5%;
+    color: black;
+}
+
+.recipe-delete {
+    grid-area: delete;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.recipe-delete2 {
+    grid-area: delete;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.recipe-delete i {
+    font-size: 18px;
+}
+
+.recipe-delete2 i {
+    font-size: 40px;
+}
+
+/* ########## */
 
 .navbarbot {
     overflow: hidden;
