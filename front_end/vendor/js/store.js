@@ -82,11 +82,11 @@ function addItemToCart(title, price) {
         case ("Senha Grill"):
             ticketID = 3;
             break;
-        case ("Pack de Senhas Simples"):
-            ticketID = 6;
-        case ("Pack de Senhas"):
+        case ("Pack de Senhas Completa"):
             ticketID = 5;
             break;
+        case ("Pack de Senhas Simples"):
+            ticketID = 6;
         default:
             ticketID = 1;
             break;
@@ -100,10 +100,7 @@ function addItemToCart(title, price) {
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1">
             <input class="cart-quantity-input" type="hidden" value=${ticketID}>
-            <button class="btn btn-primary btn-danger" type="button">X</button>
-            
-
-           
+            <button class="btn btn-primary btn-danger" type="button">x</button>
         </div>`
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow)
@@ -117,8 +114,10 @@ function updateCartTotal() {
     let total = 0
     for (let i = 0; i < cartRows.length; i++) {
         let cartRow = cartRows[i]
+        console.log('cartRow: ', cartRow)
         let priceElement = cartRow.getElementsByClassName('cart-price')[0]
         let quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
+        console.log('quantityElement: ', quantityElement)    
         let price = parseFloat(priceElement.innerText.replace('$', ''))
         let quantity = quantityElement.value
         total = total + (price * quantity)
@@ -158,6 +157,17 @@ function pay(cart) {
         method: 'POST',
         body: JSON.stringify(cart)
     }).then(res => res.json())
-      .then(data => window.location.href = data.url);
+        .then(data => window.location.href = data.url);
+
+}
+
+window.onload = () => {
+    const anchors = document.querySelectorAll(".btn-card");
+
+    anchors.forEach(anchor => {
+        anchor.addEventListener('click', e => {
+            e.preventDefault();
+        })
+    });
 
 }

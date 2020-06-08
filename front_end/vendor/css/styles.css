@@ -206,7 +206,7 @@ main {
     display: grid;
     grid-template-columns: 2fr 6fr;
     grid-template-areas: "image details delete";
-    background-color: #f8f8f8;
+    background-color: #fdfdfd;
     margin: 0 10%;
 }
 
@@ -217,39 +217,31 @@ main {
     background-size: contain;
 }
 
+.ticket-details {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 10%;
+}
+
 .ticket-title {
     position: relative;
     font-weight: bold;
     font-size: medium;
 }
 
+.ticket-title-p {
+    margin: 0px;
+    padding: 0px;
+}
 
 .ticket-price {
     font-size: small;
 }
 
-
-.btn-card-container {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    margin: 3% 10%;
-}
-
-.btn-card {
-    position: relative;
-    cursor: pointer;
-    width: 100%;
-    height: 2.5em;
-    text-decoration: none;
-    outline: none;
-    padding-left: 15%;
-    font-size: 1rem;
-    border-radius: 5px;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-    background-color: var(--primary);
-    color: white;
-    font-weight: bold;
+.ticket-price-p {
+    margin: 0px;
+    padding: 0px;
 }
 
 .btn-card:hover {
@@ -260,63 +252,106 @@ main {
 .btn-card:focus {
     color: var(--primary);
     background-color: white;
+}   
+
+.btn-card {
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1rem;
 }
 
-
-.btn-card:before {
-    content: "";
-    position: absolute;
-    border-right: #bd1e21 0.01em solid;
-    top: 0;
-    left: 0;
-    width: 15%;
-    height: 100%;
-    background: url('../img/add_shopping_cart-white.svg') no-repeat center;
-    background-size: contain;
+.cart-header {
+    font-weight: bold;
+    font-size: 1.5rem!important;
+    width: 45%;
+    color: #333;
 }
 
-.btn-card:hover::before {
-    background: url('../img/add_shopping_cart-red.svg') no-repeat center;
-    background-size: contain;
+.cart-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid black;
 }
 
-.btn-card:focus::before {
-    background: url('../img/add_shopping_cart-red.svg') no-repeat center;
-    background-size: contain;
+.cart-row {
+    display: flex;
 }
 
-.material-icons.shop-cart {
-    color: white;
+.cart-item {
+    width: 45%;
+    font-size: 1.35rem;
+    color: #333;
 }
 
-.recipe-details {
-    grid-area: details;
-    margin-top: 6px;
-    padding-right: 5%;
-    padding-left: 5%;
+.cart-price {
+    width: 45%;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.cart-quantity {
+    width: 45%;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.cart-item-title {
+    color: #333;
+    font-size: 1.25rem;
+}
+
+.btn-danger {
+    margin-left: 30px;
+    background: white;
     color: black;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    height: 30%;
+    margin: 40% 15%;
 }
 
-.recipe-delete {
-    grid-area: delete;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
+.btn-danger:hover {
+    margin-left: 30px;
+    background: white;
+    color: black;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    height: 30%;
+    margin: 40% 15%;
 }
 
-.recipe-delete2 {
-    grid-area: delete;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
+.cart-quantity-input {
+    text-align: center;
+    font-size: 1.25rem!important;
 }
 
-.recipe-delete i {
-    font-size: 18px;
+.cart-row:last-child {
+    border-bottom: 1px solid black;
 }
 
-.recipe-delete2 i {
-    font-size: 40px;
+.cart-row:last-child .cart-column {
+    border: none;
+}
+
+.cart-total {
+    text-align: end;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.cart-total-title {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: black;
+    margin-right: 20px;
+}
+
+.cart-total-price {
+    color: #333;
+    font-size: 1.1em;
 }
 
 /* ########## */
@@ -353,7 +388,7 @@ main {
 
 
 .material-icons {
-    color: var(--primary);
+    color: black;
 }
 
 .material-icons.active {
@@ -367,133 +402,4 @@ main {
 
 #outer {
     width: 100%
-}
-
-.shop-item-title {
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.5em;
-    color: #333;
-}
-
-.shop-item-details {
-    display: flex;
-    align-items: center;
-    padding: 5px;
-}
-
-.shop-item-price {
-    flex-grow: 1;
-    color: #333;
-}
-
-.shop-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.cart-header {
-    font-weight: bold;
-    font-size: 1.25em;
-    color: #333;
-}
-
-.cart-column {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid black;
-    margin-right: 1.5em;
-    padding-bottom: 10px;
-    margin-top: 10px;
-}
-
-.cart-row {
-    display: flex;
-}
-
-.cart-item {
-    width: 45%;
-}
-
-.cart-price {
-    width: 20%;
-    font-size: 1.2em;
-    color: #333;
-}
-
-.cart-quantity {
-    width: 35%;
-}
-
-.cart-item-title {
-    color: #333;
-    margin-left: .5em;
-    font-size: 1em;
-}
-
-.cart-item-image {
-    width: 75px;
-    height: auto;
-    border-radius: 10px;
-}
-
-.btn-danger {
-    margin-left: 30px;
-    background: #e33742;
-    border: none;
-    font-weight: bold;
-    text-align: center;
-    width: 50px;
-}
-
-.btn-danger:hover {
-    background-color: #CC4C4C;
-    margin-left: 30px;
-    background: #e33742;
-    border: none;
-    font-weight: bold;
-    text-align: center;
-    width: 50px;
-}
-
-.cart-quantity-input {
-    height: 34px;
-    width: 50px;
-    border-radius: 5px;
-    border: 1px solid #56CCF2;
-    background-color: #eee;
-    color: #333;
-    padding: 0;
-    text-align: center;
-    font-size: 1.2em;
-    margin-right: 25px;
-}
-
-.cart-row:last-child {
-    border-bottom: 1px solid black;
-}
-
-.cart-row:last-child .cart-column {
-    border: none;
-}
-
-.cart-total {
-    text-align: end;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-.cart-total-title {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: black;
-    margin-right: 20px;
-}
-
-.cart-total-price {
-    color: #333;
-    font-size: 1.1em;
 }
