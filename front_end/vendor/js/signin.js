@@ -51,11 +51,15 @@ const startApp = () => {
 const attachSignin = (element) => {
     auth2.attachClickHandler(element, {},
         function (googleUser) {
-            googleUser = googleUser.getBasicProfile();
+
+            userEmail = googleUser.getEmail();
+            userFirstname = googleUser.getName();
+            userLastName = googleUser.getFamilyName();
+
             let profile = {
-                'email': googleUser.Du,
-                'firstName': googleUser.sW,
-                'lastName': googleUser.tU,
+                'email': userEmail,
+                'firstName': userFirstname,
+                'lastName': userLastName,
                 'api': 'google'
             }
             console.log(profile)
@@ -108,7 +112,7 @@ function signInApi(profile) {
         email: profile.email
     }
 
-    fetch('https://isi-ticket-api.herokuapp.com/user/signin', {
+    fetch   ('https://isi-ticket-api.herokuapp.com/user/signin', {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
         body: JSON.stringify(data)
@@ -123,6 +127,7 @@ function signInApi(profile) {
             window.location.href = './vendor/pages/perfil.html'
         } else {
             console.log(profile)
+            alert(profile)
             localStorage.setItem("email", profile.email);
             localStorage.setItem("firstname", profile.firstName);
             localStorage.setItem("lastname", profile.lastName);
@@ -131,4 +136,5 @@ function signInApi(profile) {
 
         };
     });
+
 }

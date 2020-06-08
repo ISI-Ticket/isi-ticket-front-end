@@ -9,13 +9,12 @@
     <!-- materialize icons, css & js -->
     <link rel="icon" type="image/png" sizes="32px32" href="../img/icons/icon-72x72.png">
     <link rel="icon" type="image/png" sizes="16px16" href="../img/icons/icon-72x72.png">
+    <link rel="manifest" href="/manifest.json">
     <link type="text/css" href="../css/materialize.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" href="../css/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/modal.css">
-    <script type="text/javascript" src="../js/materialize.min.js"></script>
-    <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="../css/style2.css" />
     <!-- ios support -->
     <link rel="apple-touch-icon" href="../img/icons/icon-96x96.png">
     <meta name="apple-mobile-web-app-status-bar" content="#e33742">
@@ -23,21 +22,54 @@
     <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
 </head>
 
-<body class="grey lighten-4">
+<body>
 
-    <!-- top nav -->
-    <nav class="z-depth-0">
-        <div class="nav-wrapper container">
+    <!-- header -->
+    <div class="header-container">
+        <header>
+            <div class="header-title-container">
+                <a href="../pages/pagamento.html" class="header-title">ISI TICKET</a>
+            </div>
+            <div class="header-page-text-container">
+                <h5 class="header-page-text">LOJA</h5>
+            </div>
+        </header>
+    </div>
 
-            <a href="../pages/pagamento.html" class="navbartexto" style="font-size: medium;">ISI TICKET</a>
-            <h5 class="titulo2">CARTEIRA</h5>
-            <span class="right grey-text text-darken-1"></span>
-        </div>
-    </nav>
-
-    <!-- recipes -->
-    <div class="recipes container grey-text text-darken-1"
-        style="color:white; position: center;" id="render">
+    <!-- content -->
+    <div class="content-container">
+        <main>
+            <div class="cards-header">
+            </div>
+            <div id="render">
+                <div class="card-panel ticket row">
+                    <div class="card-img">
+                    </div>
+                    <div class="ticket-details">
+                        <br />
+                        <div class="ticket-title">
+                            <p class="ticket-title-p">${ticket.ticketName}</p>
+                        </div>
+                        <div class="ticket-price">
+                            <p class="ticket-price-p">Comprado em : ${date}</p><br />
+                        </div>
+                        <div class="btn-card-container">
+                            <a href="#popup${index}" class="btn-card">Ver QRCode</a>
+                            <br />
+                            <br />
+                        </div>
+                        <div id="popup${index}" class="overlay">
+                            <div class="popup">
+                                <h1 style="font-size: 20px">${ticket.ticketName} - ${date}</h1>
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">qrd code</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 style="color: white"><br /><br /></h2>
+        </main>
     </div>
 
 
@@ -47,7 +79,7 @@
             <a href="../pages/perfil.html"><i class="material-icons">account_box</i></a>
             <a href="../pages/sobre.html"><i class="material-icons">contact_support</i></a>
             <a href="../pages/pagamento.html"><i class="material-icons">add_shopping_cart</i></a>
-            <a href="../pages/carteira.html"><i class="material-icons">shopping_cart</i></a>
+            <a href="../pages/carteira.html" class="active"><i class="material-icons active">shopping_cart</i></a>
             <a href="../pages/historico.html"><i class="material-icons">receipt_long</i></a>
         </div>
     </div>

@@ -8,7 +8,7 @@
     --nav-over: #F3E0DC;
     --content-background: #ebebeb;
     --header-height: 90px;
-    --navbar-bot-height: 58.4px;
+    --navbar-bot-height: 50px;
 }
 
 * {
@@ -96,13 +96,6 @@ input:focus {
     color: var(--primary);
     font-weight: bold;
 }
-
-/*.btn {
-    text-align: center;
-    vertical-align: middle;
-    padding: .67em .67em;
-    cursor: pointer;
-}*/
 
 .content-container {
     display: absolute;
@@ -344,14 +337,14 @@ main {
 
 .cart-total-title {
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.6rem;
     color: black;
     margin-right: 20px;
 }
 
 .cart-total-price {
     color: #333;
-    font-size: 1.1em;
+    font-size: 1.5rem;
 }
 
 /* ########## */
@@ -362,6 +355,7 @@ main {
     position: fixed;
     bottom: 0;
     width: 100%;
+    height: var(--navbar-bot-height);
 }
 
 .navbarbot a {
@@ -369,11 +363,12 @@ main {
     display: block;
     color: white;
     width: auto;
-    height: auto;
+    height: var(--navbar-bot-height);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    
 }
 
 .navbarbot a:hover {
@@ -384,6 +379,7 @@ main {
 .navbarbot a.active {
     background-color: #e33742;
     color: white;
+
 }
 
 
@@ -398,6 +394,7 @@ main {
 #inner {
     display: table;
     margin: 0 auto;
+    height: var(--navbar-bot-height);
 }
 
 #outer {
