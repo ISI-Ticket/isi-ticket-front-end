@@ -52,14 +52,13 @@ const attachSignin = (element) => {
     auth2.attachClickHandler(element, {},
         function (googleUser) {
             googleUser = googleUser.getBasicProfile();
-
             let profile = {
-                'email': googleUser.Eu,
-                'firstName': googleUser.GW,
-                'lastName': googleUser.GU,
+                'email': googleUser.Du,
+                'firstName': googleUser.sW,
+                'lastName': googleUser.tU,
                 'api': 'google'
             }
-
+            console.log(profile)
             signInApi(profile);
 
         }, function (error) {
@@ -123,11 +122,13 @@ function signInApi(profile) {
             localStorage.setItem('api', profile.api);
             window.location.href = './vendor/pages/perfil.html'
         } else {
-            window.location.href = './vendor/pages/registar.html'
-            localStorage.setItem('email', profile.email);
-            localStorage.setItem('firstname', profile.firstName);
-            localStorage.setItem('lastname', profile.lastName);
+            console.log(profile)
+            localStorage.setItem("email", profile.email);
+            localStorage.setItem("firstname", profile.firstName);
+            localStorage.setItem("lastname", profile.lastName);
             localStorage.setItem('api', profile.api);
+            window.location.href = './vendor/pages/registar.html'
+
         };
     });
 }
