@@ -210,6 +210,49 @@ main {
     background-size: contain;
 }
 
+.card-img-senha-simples {
+    grid-area: image;
+    display: block;
+    background: url("../img/icon-senha-simples.png") no-repeat center;
+    background-size: contain;
+}
+
+.card-img-senha-completa {
+    grid-area: image;
+    display: block;
+    background: url("../img/icon-senha-completa.png") no-repeat center;
+    background-size: contain;
+}
+
+.card-img-senha-rampab {
+    grid-area: image;
+    display: block;
+    background: url("../img/icon-senha-rampab.png") no-repeat center;
+    background-size: contain;
+}
+
+.card-img-senha-grill {
+    grid-area: image;
+    display: block;
+    background: url("../img/icon-senha-grill.png") no-repeat center;
+    background-size: contain;
+}
+
+
+.card-img-pack-senha-simples {
+    grid-area: image;
+    display: block;
+    background: url("../img/icon-pack-senha-simples.png") no-repeat center;
+    background-size: contain;
+}
+
+.card-img-pack-senha-completa {
+    grid-area: image;
+    display: block;
+    background: url("../img/icon-pack-senhas-completas.png") no-repeat center;
+    background-size: contain;
+}
+
 .ticket-details {
     display: flex;
     justify-content: center;

@@ -1,77 +1,54 @@
-.overlay {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    /*  position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;*/
-    transition: opacity 500ms;
-    visibility: hidden;
-    opacity: 0;
+#myModal.modal.fade.in {
+    padding: 0px!important;
+    margin: 0px!important;
+    border-radius: 20px!important;
+    overflow: hidden!important;
 }
 
-.overlay:target {
-    visibility: visible;
-    opacity: 1;
+#myModal.modal {
+    padding: 0px!important;
+    margin: 0px!important;
+    border-radius: 20px!important;
+    overflow: hidden!important;
 }
 
-.popup {
-    margin: 0 auto;
-    top: 20%;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    width: 10%;
-    position: relative;
-    transition: all 5s ease-in-out;
+.modal {
+    opacity: 1!important;
+    top: calc(16px + var(--header-height))!important;
+    left: 10%!important;
+    right: 10%!important;
+    bottom: calc(16px + var(--navbar-bot-height))!important;
 }
 
-.popup .close {
+.modal-open {
+    padding: 0px!important;
+    margin: 0px!important;
+    border-radius: 20px!important;
+    bottom: calc(16px + var(--navbar-bot-height))!important;
+}
+
+.modal-content {
+    height: 100%!important;
+    border-radius: 20px!important;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+}
+
+p {
+    font-size: 15px;
+}
+
+.qrcode-container {
     position: absolute;
-    top: 20px;
-    right: 30px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-}
-
-.popup .close:hover {
-    color: #06D85F;
-}
-
-.popup .content {
-    max-height: 30%;
-    text-align: center;
-    overflow: auto;
-    width: 80%;
-    margin: 0 auto;
-}
-
-.center69 {
-    width: 20%;
-    height: 20%;
-    border: white;
-    box-sizing: 10%;
-}
-
-@media screen and (max-width: 1700px) {
-    .box {
-        width: 50%;
-    }
-    .popup {
-        width: 50%;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .center69 {
-        width: 20%;
-        height: 20%;
-    }
+    top: 54px;
+    width: 100%;
+    height: calc(100vh - (32px + var(--navbar-bot-height) + 56.6px + 54px + 48px + var(--header-height)));
+    background:url("../img/qr-code.png") center no-repeat;
+    background-size: contain;
 }

@@ -16,80 +16,75 @@ function populate(tickets) {
     let page;
     let index = 0;
     for (ticket of tickets) {
-        let img = setImage(ticket.ticketID);
-        let qrcode = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${ticket.saleID}" alt="" title="" />`
+        
+        //setImage(ticket.ticketID, divQrCode, ticket.saleID);
+
+        //let qrcode = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${ticket.saleID}" alt="" title="" />`
         index += 1;
         let date = ticket.date.substring(0, 10);
         page =
-            `<div class="card-panel recipe white row" style="height:50%;"><img src="${img}" alt="recipe thumb">
-                <div class="recipe-details">
-                    <div class="recipe-title" style="font-size:medium;">${ticket.ticketName}</div>
-                    <div class="recipe-ingredients" style="font-size: medium;">Comprado em : ${date}</div>
-                    <br>
-                    <div class="recipe-ingredients"><a class="button" style = 'font-size: 16px' href="#popup${index}"> Ver QRCode</a></div>
-                    <div id="popup${index}" class="overlay">
-                        <div class="popup">
-                            <h1 style ="font-size: 20px">${ticket.ticketName} - ${date}</h1>
-                            <a class="close" href="#">&times;</a>
-                            <div class="content">${qrcode}</div>
-                        </div>
+            `
+            <div class="card-panel ticket row">
+                    <div class="card-img-pack-senha-simples">
                     </div>
+                    <div class="ticket-details">
+                        <br />
+                        <div class="ticket-title">
+                            <p class="ticket-title-p">${ticket.ticketName}</p>
+                        </div>
+                        <div class="ticket-price">
+                            <p class="ticket-price-p">Comprado em : ${date}</p><br />
+                        </div>
+                        <div class="btn-card-container">
+                            <a class="btn-card" data-toggle="modal" data-target="#popup${index}">Ver QRCode</a>
+                            <br />
+                            <br />
+                        </div>
+                        <div class="modal fade" id="popup${index}" tabindex="-1" role="dialog"
+                            aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+                                <div class="modal-content">
+                                    <div class="modal-header" id="qrCodeModalLabel">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title">${ticket.ticketName}</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Comprado em : 07-06-2020 23:03</p>
+                                        <div class="qrcode-container" id="${ticket.saleID}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
-                <br>
-                <br>
-            </div>`
+            </div>
+            <br/>
+            `
         render.innerHTML += page;
 
+        let divQrCode = document.getElementById(ticket.saleID);
+        divQrCode.style.position = "absolute";
+        divQrCode.style.top = "70px";
+        divQrCode.style.width = "90%";
+        divQrCode.style.height = "calc(100vh - (48px + var(--navbar-bot-height) + 56.6px + 54px + 48px + var(--header-height)))";
+        divQrCode.style.background = "url('https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${ticket.saleID}') center no-repeat";
+        divQrCode.style.backgroundSize = "contain";
     }
 }
-/*
-function populate(tickets){
-    console.log(tickets)
-    let render  = document.getElementById('render');
-    let page;
-    let index = 0;
-    for(ticket of tickets){
-        let img = setImage(ticket.ticketID);
-        let qrcode = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=22/${ticket.ticketID}-${ticket.reference}" alt="" title="" />`
-        for(let i = 0; i < ticket.quantity; i++){
-            index += 1;
-            let date = ticket.date.substring(0,10);
-            page = 
-            `<div class="card-panel recipe white row">
-            <img src=${img} alt="recipe thumb">
-            <div class="recipe-details">
-                <div class="recipe-title">${ticket.ticketName} </div>
-                <div class="recipe-ingredients">${ticket.description} - ${date}</div>
-            </div>
-            <div class="recipe-delete">
-                <a class="button" href="#popup${index}"></a>
-                <div id="popup${index}" class="overlay">
-                <div class="popup">
-                    <h1 style ="font-size: 20px">${ticket.ticketName} - ${date}</h1>
-                    <a class="close" href="#">&times;</a>
-                    <div class="content">
-                        ${qrcode}
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>`
-            render.innerHTML += page;
-        }
-    }
-   
-}*/
 
-
-function setImage(ticketID) {
+function setImage(ticketID, divQrCode, saleID) {
     switch (ticketID) {
         case 1:
-            return "../img/yellowticket.png"
+            divQrCode.style.backgroundImage("url('https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${ticket.saleID}') center no-repeat");
         case 2:
             return "../img/greenticket.png"
         case 3:
             return "../img/purpleticket.png"
         case 4:
             return "../img/orangeticket.png"
+        case 5:
+            return 
+        case 6:
+
     }
 }
