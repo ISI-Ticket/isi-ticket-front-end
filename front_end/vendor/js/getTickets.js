@@ -64,10 +64,10 @@ function populate(tickets) {
 
         let divQrCode = document.getElementById(ticket.saleID);
         divQrCode.style.position = "absolute";
-        divQrCode.style.top = "70px";
+        divQrCode.style.top = "54px";
         divQrCode.style.width = "90%";
-        divQrCode.style.height = "calc(100vh - (48px + var(--navbar-bot-height) + 56.6px + 54px + 48px + var(--header-height)))";
-        divQrCode.style.background = "url('https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${ticket.saleID}') center no-repeat";
+        divQrCode.style.height = "calc(100vh - (32px + var(--navbar-bot-height) + 56.6px + 54px + 48px + var(--header-height)))";
+        divQrCode.style.background = "url('https://api.qrserver.com/v1/create-qr-code/?size=450x450&data=${ticket.saleID}') center no-repeat";
         divQrCode.style.backgroundSize = "contain";
     }
 }
