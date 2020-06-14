@@ -62,7 +62,7 @@ const attachSignin = (element) => {
                 'lastName': userLastName,
                 'api': 'google'
             }
-            console.log(profile)
+
             signInApi(profile);
 
         }, function (error) {
@@ -123,15 +123,13 @@ function signInApi(profile) {
 
         if (data.exists == true) {
             localStorage.setItem('profile', response);
-            localStorage.setItem('api', profile.api);
+            localStorage.setItem('api', JSON.stringify(profile.api));
             window.location.href = './vendor/pages/perfil.html'
         } else {
-            console.log(profile)
-            alert(profile)
             localStorage.setItem("email", profile.email);
             localStorage.setItem("firstname", profile.firstName);
             localStorage.setItem("lastname", profile.lastName);
-            localStorage.setItem('api', profile.api);
+            localStorage.setItem('api', JSON.stringify(profile.api));
             window.location.href = './vendor/pages/registar.html'
 
         };

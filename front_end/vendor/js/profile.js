@@ -1,23 +1,23 @@
-window.onloadstart = () => {
-  let profile = JSON.parse(localStorage.setItem('profile'));
+window.onload = () => {
+  getProfile();
+
+  let api = JSON.parse(localStorage.getItem('api'));
 
   const signOutBtn = document.getElementById('signOutBtn');
 
-  if (profile.api === 'google') {
-    let script = document.createElement('script');
+  if (api === 'google') {
 
-    script.src = 'https://apis.google.com/js/platform.js';
+    let script = document.createElement('script');
+    console.log("carreguei")
+    script.src = 'https://apis.google.com/js/platform.js?onload=initialize';
     script.async = 'async';
     script.defer = 'defer';
 
     document.head.appendChild(script);
 
-    signOutBtn.addEventListener('click', () => {
-      signOutGoogle();
-    });
+  }
 
-  } else {
-
+  if (api === 'facebook') {
     window.fbAsyncInit = function () {
       FB.init({
         appId: '253404675657890',
@@ -35,15 +35,13 @@ window.onloadstart = () => {
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+    signOutBtn.addEventListener('click', () => {
+      signOutFacebook();
+    });
+
   }
 
-  signOutBtn.addEventListener('click', () => {
-    signOutFacebook();
-  });
-
 }
-
-window.onload = getProfile();
 
 function getProfile() {
   let profile = JSON.parse(localStorage.getItem('profile'));
@@ -59,12 +57,14 @@ function getProfile() {
 }
 
 function onLoad() {
+  console.log("terminar")
   gapi.load('auth2', function () {
     gapi.auth2.init();
   });
 }
 
 const signOutGoogle = () => {
+  console.log("terminar")
   let auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(() => {
     localStorage.clear();
@@ -75,8 +75,24 @@ const signOutGoogle = () => {
 
 const signOutFacebook = () => {
   FB.logout((response) => {
-      localStorage.clear();
-      console.log(response);
-      window.location.href = '../../index.html';
+    localStorage.clear();
+    console.log(response);
+    window.location.href = '../../index.html';
   });
+}
+
+function initialize() {
+  console.log("inicializei")
+  gapi.load('auth2', function () {
+    auth2 = gapi.auth2.init({
+      client_id: '743510812799-olf9sq5n33lqvp9reigo9tb11itfucmo.apps.googleusercontent.com',
+      cookiepolicy: 'single_host_origin',
+      scope: 'profile'
+    });
+  });
+
+  signOutBtn.addEventListener('click', () => {
+    signOutGoogle();
+  });
+
 }
