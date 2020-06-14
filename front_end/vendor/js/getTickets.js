@@ -10,22 +10,20 @@ async function getTickets() {
 }
 
 
-function populate(tickets) {
-    console.log(tickets)
+const populate = (tickets) => {
+
     let render = document.getElementById('render');
     let page;
     let index = 0;
     for (ticket of tickets) {
         
-        //setImage(ticket.ticketID, divQrCode, ticket.saleID);
-
-        //let qrcode = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${ticket.saleID}" alt="" title="" />`
+        let divImageClass = setImage(ticket.ticketID); 
         index += 1;
         let date = ticket.date.substring(0, 10);
         page =
             `
             <div class="card-panel ticket row">
-                    <div class="card-img-pack-senha-simples">
+                    <div class="${divImageClass}">
                     </div>
                     <div class="ticket-details">
                         <br />
@@ -72,19 +70,21 @@ function populate(tickets) {
     }
 }
 
-function setImage(ticketID, divQrCode, saleID) {
+const setImage = (ticketID) => {
     switch (ticketID) {
         case 1:
-            divQrCode.style.backgroundImage("url('https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${ticket.saleID}') center no-repeat");
+            return 'card-img-senha-simples'
         case 2:
-            return "../img/greenticket.png"
+            return 'card-img-senha-completa'
         case 3:
-            return "../img/purpleticket.png"
+            return 'card-img-senha-grill'
         case 4:
-            return "../img/orangeticket.png"
+            return 'card-img-senha-rampab'
         case 5:
-            return 
+            return 'card-img-pack-senha-completa'
         case 6:
-
+            return 'card-img-pack-senha-simples'
+        default:
+            return 'card-img-senha-completa'
     }
 }
