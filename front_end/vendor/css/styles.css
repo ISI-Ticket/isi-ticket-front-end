@@ -443,3 +443,10 @@ main {
 #outer {
     width: 100%
 }
+
+/* Media queries */
+@media screen and (max-width: 380px) {
+    .navbarbot a {
+        padding: 14px 12px;
+    }
+}
