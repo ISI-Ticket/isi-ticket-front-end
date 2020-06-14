@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
     this.getTickets().then(tickets => populate(tickets))
 }
 async function getTickets() {
@@ -11,13 +11,13 @@ async function getTickets() {
 
 
 const populate = (tickets) => {
-
+    console.log(tickets);
     let render = document.getElementById('render');
     let page;
     let index = 0;
     for (ticket of tickets) {
-        
-        let divImageClass = setImage(ticket.ticketID); 
+
+        let divImageClass = setImage(ticket.ticketID);
         index += 1;
         let date = ticket.date.substring(0, 10);
         page =
