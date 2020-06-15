@@ -73,7 +73,7 @@ function addItemToCart(title, price) {
         case ("Senha Simples"):
             ticketID = 1;
             break;
-        case ("Senha Completa"):
+        case ("Senha Normal"):
             ticketID = 2;
             break;
         case ("Senha Rampa B"):
@@ -82,11 +82,12 @@ function addItemToCart(title, price) {
         case ("Senha Grill"):
             ticketID = 3;
             break;
-        case ("Pack de Senhas Completa"):
+        case ("Pack de Senhas Normal"):
             ticketID = 5;
             break;
         case ("Pack de Senhas Simples"):
             ticketID = 6;
+            break;
         default:
             ticketID = 1;
             break;
@@ -150,7 +151,10 @@ function getItems() {
 
 
 function pay(cart) {
-    fetch('https://isi-ticket-api.herokuapp.com/paypalV2/pay', {
+    let profile = JSON.parse(localStorage.getItem('profile'));
+    let email = profile.email;
+    console.log(email)
+    fetch(`https://isi-ticket-api.herokuapp.com/paypalV2/pay/${email}`, {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
         body: JSON.stringify(cart)
