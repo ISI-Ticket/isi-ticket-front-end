@@ -1,89 +1,104 @@
-
-(function ($) {
-    "use strict";
-
-
-    /*==================================================================
-    [ Focus input ]*/
-    $('.input100').each(function(){
-        $(this).on('blur', function(){
-            if($(this).val().trim() != "") {
-                $(this).addClass('has-val');
-            }
-            else {
-                $(this).removeClass('has-val');
-            }
-        })    
-    })
-  
-  
-    /*==================================================================
-    [ Validate ]*/
-    var input = $('.validate-input .input100');
-
-    $('.validate-form').on('submit',function(){
-        var check = true;
-
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
-                showValidate(input[i]);
-                check=false;
-            }
-        }
-
-        return check;
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .then((registration) => {
+      console.log('Service Worker is registered', registration);
+      registration.pushManager.getSubscription()
+    }).catch(error => {
+      console.error('Service Worker Error', error);
     });
+} else {
+  console.warn('Push messaging is not supported');
+  pushButton.textContent = 'Push Not Supported';
+}
 
+(async () => {
+  if('serviceWorker' in navigator) {
+    // We first get the registration
+    const registration = await navigator.serviceWorker.ready;
+    // Asking for the subscription object
+    let subscription = await registration.pushManager.getSubscription();
 
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
-        });
-    });
-
-    function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                return false;
-            }
-        }
-        else {
-            if($(input).val().trim() == ''){
-                return false;
-            }
-        }
+    // If we don't have a subscription we have to create and register it!
+    if (!subscription) {
+      subscription = await subscribe(registration);
     }
+    // Implementing an unsubscribe button
+    document.getElementById('unsubscribe').onclick = () => unsubscribe();
+  }
+})().catch(e => {
+  alert(`There has been an error 
+        ${e.toString()}`);
+  throw e;
+});
 
-    function showValidate(input) {
-        var thisAlert = $(input).parent();
+// We use this function to subscribe to our push notifications
+// As soon as you run this code once, it shouldn't run again if the initial subscription went well
+// Except if you clear your storage
+const subscribe = async (registration) => {
+  // First get a public key from our Express server
+  const response = await fetch('/vapid-public-key');
+  const body = await response.json();
+  const publicKey = body.publicKey;
 
-        $(thisAlert).addClass('alert-validate');
+  // this is an annoying part of the process we have to turn our public key
+  // into a Uint8Array
+  const Uint8ArrayPublicKey = urlBase64ToUint8Array(publicKey);
+
+  // registering a new subscription to our service worker's Push manager
+  const subscription = await registration.pushManager.subscribe({
+    // don't worry about the userVisible only atm
+    userVisibleOnly: true,
+    applicationServerKey: Uint8ArrayPublicKey
+  });
+
+  // Sending the subscription object to our Express server
+  await fetch('/subscribe',
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(subscription.toJSON())
     }
+  );
+  return subscription;
+};
 
-    function hideValidate(input) {
-        var thisAlert = $(input).parent();
+// Let's create an unsubscribe function as well
+const unsubscribe = async () => {
+  const registration = await navigator.serviceWorker.ready;
+  const subscription = await registration.pushManager.getSubscription();
 
-        $(thisAlert).removeClass('alert-validate');
-    }
-    
-    /*==================================================================
-    [ Show pass ]*/
-    var showPass = 0;
-    $('.btn-show-pass').on('click', function(){
-        if(showPass == 0) {
-            $(this).next('input').attr('type','text');
-            $(this).find('i').removeClass('zmdi-eye');
-            $(this).find('i').addClass('zmdi-eye-off');
-            showPass = 1;
-        }
-        else {
-            $(this).next('input').attr('type','password');
-            $(this).find('i').addClass('zmdi-eye');
-            $(this).find('i').removeClass('zmdi-eye-off');
-            showPass = 0;
-        }
-        
-    });
+  // This tells our browser that we want to unsubscribe
+  await subscription.unsubscribe();
 
+  // This tells our Express server that we want to unsubscribe
+  await fetch("/unsubscribe", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(subscription.toJSON())
+  });
+  writeSubscriptionStatus("Unsubscribed");
+};
 
-})(jQuery);
+// This simply shows our user that they are unsubscribed
+const writeSubscriptionStatus = subscriptionStatus => {
+  document.getElementById("status").innerHTML = subscriptionStatus;
+};
+
+// I have found this code (or variations of) from; multiple sources
+// but I could not find the original author
+// here's one such source:
+// https://stackoverflow.com/questions/42362235/web-pushnotification-unauthorizedregistration-or-gone-or-unauthorized-sub
+const urlBase64ToUint8Array = (base64String) => {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+};
