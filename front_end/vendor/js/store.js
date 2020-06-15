@@ -153,6 +153,7 @@ function getItems() {
 function pay(cart) {
     let profile = JSON.parse(localStorage.getItem('profile'));
     let email = profile.email;
+    console.log(email)
     fetch(`https://isi-ticket-api.herokuapp.com/paypalV2/pay/${email}`, {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
