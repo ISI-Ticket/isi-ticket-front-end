@@ -395,6 +395,11 @@ main {
 
 /* ########## */
 
+.margin {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .navbarbot {
     overflow: hidden;
     background-color: var(--secondary);

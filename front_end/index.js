@@ -4,6 +4,7 @@ const cron = require('node-cron');
 const express = require('express');
 const app = express();
 const path = require('path');
+let notificationTime;
 
 app.use(express.static(path.join(__dirname)));
 app.use("/vendor/css", express.static(__dirname + '/vendor/css'));
@@ -46,24 +47,31 @@ app.use(bodyParser.json());
 
 app.get('/vapid-public-key', (req, res) => res.send({ publicKey }));
 
+app.post('/notificationTime', (req, res) => {
+  notificationTime = req.body;
+  res.send('ok!')
+});
+
 app.post('/subscribe', (req, res) => {
   const subscription = req.body;
-  registerTasks(subscription);
+    registerTasks(subscription);
   res.send('subscribed!');
 });
 
 const registerTasks = (subscription) => {
   const endpoint = subscription.endpoint;
   
-  const morningTask = cron.schedule('7 4 * * *', () => {
+  console.log(notificationTime)
+
+  const lunchNotification = cron.schedule(`${notificationTime.lunchMinutes} ${notificationTime.lunchHours} * * *`, () => {
     sendNotification(subscription, JSON.stringify({ timeOfDay: 'morning' }));
   });
 
-  const afternoonTask = cron.schedule('10 4 * * *', () => {
+  const dinnerNotification = cron.schedule(`${notificationTime.dinnerMinutes} ${notificationTime.dinnerHours} * * *`, () => {
     sendNotification(subscription, JSON.stringify({ timeOfDay: 'afternoon' }));
   });
 
-  allSubscriptions[endpoint] = [morningTask, afternoonTask, nightTask];
+  allSubscriptions[endpoint] = [lunchNotification, dinnerNotification];
 };
 
 app.post('/unsubscribe', (req, res) => {
@@ -75,7 +83,6 @@ app.post('/unsubscribe', (req, res) => {
 });
 
 const sendNotification = async (subscription, payload) => {
-  // This means we won't resend a notification if the client is offline
   const options = {
     TTL: 0
   };
