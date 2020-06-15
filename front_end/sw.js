@@ -99,7 +99,7 @@ self.addEventListener('push', function (e) {
     body: `Sopa: Creme de abóbora\nPrato: Salmão grelhado com batata cozida\nAcompanhamento: Couve branca salteada`,
     // we use the images from the PWA generator we made
     icon: '/vendor/img/icons/icon-192x192.png',
-    image: "/vendor/img/icons/icon-512x512.png",
+    image: "/vendor/img/icons/icon-192x192.png",
     badge: "/vendor/img/icons/icon-192x192.png",
     vibrate: [100, 50, 100],
     data: {

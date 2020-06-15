@@ -75,7 +75,7 @@ const subscribe = async (registration) => {
   const lunchMinutes = splitLunch[1];
   const dinnerHours = splitDinner[0];
   const dinnerMinutes = splitDinner[1];
-
+  
   const notificationTime = {
     lunchMinutes,
     lunchHours,
