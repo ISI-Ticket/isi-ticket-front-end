@@ -48,7 +48,7 @@ const populate = (tickets) => {
                                         <h4 class="modal-title">${ticket.ticketName}</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Comprado em : 07-06-2020 23:03</p>
+                                        <p>Comprado em : ${date}</p>
                                         <div class="qrcode-container" id="${ticket.saleID}"></div>
                                     </div>
                                 </div>
