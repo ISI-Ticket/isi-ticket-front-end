@@ -1,6 +1,6 @@
 const date = new Date();
 
-let lunchTime = `${date.getHours()}:${date.getMinutes() + 2}`;
+let lunchTime = `${date.getHours()}:${date.getMinutes() + 1}`;
 let dinnerTime = '19:00';
 
 document.addEventListener('DOMContentLoaded', function() {
