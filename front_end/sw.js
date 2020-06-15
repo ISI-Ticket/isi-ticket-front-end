@@ -90,3 +90,29 @@ self.addEventListener('fetch', evt => {
         })
     );
 });
+
+self.addEventListener('push', function (e) {
+    const message = e.data;
+  
+    // The notificationOptions will shape the look and behavior of our notification
+    const notificationOptions = {
+      body: `Time is the message: ${message}`,
+      // we use the images from the PWA generator we made
+      icon: '/images/icons/icon-512x512.png',
+      vibrate: [100, 50, 100],
+      data: {
+        dateOfArrival: Date.now(),
+        primaryKey: '2'
+      },
+      actions: [
+        {
+          action: 'close',
+          title: 'Close'
+        }
+      ]
+    };
+    e.waitUntil(
+      // We use the service worker's registration `showNotification` function to display the Notification
+      self.registration.showNotification('💊💊 You got notified! 💊💊', notificationOptions)
+    );
+  });
