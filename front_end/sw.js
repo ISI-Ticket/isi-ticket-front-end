@@ -108,7 +108,7 @@ self.addEventListener('push', function (e) {
     },
     actions: [{
         title: 'Loja',
-        action: () => { window.location.href = "http://localhost:5500/vendor/pages/pagamento.html";}
+        action: () => { window.location.href = "https://isi-ticket.herokuapp.com/vendor/pages/pagamento.html";}
       }
     ],
     actions: [
