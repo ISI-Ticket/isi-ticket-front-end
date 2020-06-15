@@ -73,7 +73,7 @@ function addItemToCart(title, price) {
         case ("Senha Simples"):
             ticketID = 1;
             break;
-        case ("Senha Completa"):
+        case ("Senha Normal"):
             ticketID = 2;
             break;
         case ("Senha Rampa B"):
