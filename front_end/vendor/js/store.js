@@ -82,7 +82,7 @@ function addItemToCart(title, price) {
         case ("Senha Grill"):
             ticketID = 3;
             break;
-        case ("Pack de Senhas Completa"):
+        case ("Pack de Senhas Normal"):
             ticketID = 5;
             break;
         case ("Pack de Senhas Simples"):
