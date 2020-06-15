@@ -87,6 +87,7 @@ function addItemToCart(title, price) {
             break;
         case ("Pack de Senhas Simples"):
             ticketID = 6;
+            break;
         default:
             ticketID = 1;
             break;
