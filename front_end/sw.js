@@ -92,27 +92,33 @@ self.addEventListener('fetch', evt => {
 });
 
 self.addEventListener('push', function (e) {
-    const message = e.data;
-  
-    // The notificationOptions will shape the look and behavior of our notification
-    const notificationOptions = {
-      body: `Time is the message: ${message}`,
-      // we use the images from the PWA generator we made
-      icon: '/images/icons/icon-512x512.png',
-      vibrate: [100, 50, 100],
-      data: {
-        dateOfArrival: Date.now(),
-        primaryKey: '2'
-      },
-      actions: [
-        {
-          action: 'close',
-          title: 'Close'
-        }
-      ]
-    };
-    e.waitUntil(
-      // We use the service worker's registration `showNotification` function to display the Notification
-      self.registration.showNotification('💊💊 You got notified! 💊💊', notificationOptions)
-    );
-  });
+  const message = e.data;
+
+  // The notificationOptions will shape the look and behavior of our notification
+  const notificationOptions = {
+    body: `Sopa: Creme de abóbora\nPrato: Salmão grelhado com batata cozida\nAcompanhamento: Couve branca salteada`,
+    // we use the images from the PWA generator we made
+    icon: '/vendor/img/icons/icon-192x192.png',
+    image: "/vendor/img/icons/icon-512x512.png",
+    badge: "/vendor/img/icons/icon-192x192.png",
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: '2'
+    },
+    actions: [{
+        title: 'Loja',
+        action: () => { window.location.href = "http://localhost:5500/vendor/pages/pagamento.html";}
+      }
+    ],
+    actions: [
+      {
+        action: 'close',
+        title: 'Fechar'
+      }
+    ]
+  };
+  e.waitUntil(
+    self.registration.showNotification('Refeição', notificationOptions)
+  );
+});
